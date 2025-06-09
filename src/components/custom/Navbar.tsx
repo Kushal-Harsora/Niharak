@@ -199,7 +199,7 @@ const Navbar = () => {
                         stiffness: 100,
                         duration: 0.4,
                       }}
-                      className="text-9xl max-md:text-7xl font-bold uppercase tracking-wide menu-items"
+                      className="text-6xl font-bold uppercase tracking-wide menu-items"
                     >
                       <Link href={path} onClick={() => setMenuOpen(false)}>
                         <span className="cursor-pointer inline-block">
