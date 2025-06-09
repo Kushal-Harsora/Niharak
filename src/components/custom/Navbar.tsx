@@ -139,8 +139,8 @@ const Navbar = () => {
                 </motion.button>
               </div>
 
-              <motion.ul className="flex flex-col items-center gap-6 mt-12">
-                {[["Home", "/"], ["Login", "/login"], ["Sign Up", "/signup"]].map(
+              <motion.ul className="flex flex-col items-center gap-6 mt-12 max-md:hidden">
+                {[["Home", "/"], ["About", "/about"], ["Contact", "/contact"]].map(
                   ([name, path], index) => (
                     <motion.li
                       key={name}
@@ -150,6 +150,7 @@ const Navbar = () => {
                       whileHover={{
                         scale: 1.1,
                         color: "#000",
+                        transition: { duration: 0.2, ease: "easeInOut" },
                       }}
                       transition={{
                         delay: index * 0.15,
@@ -173,6 +174,47 @@ const Navbar = () => {
                                 duration: 0.5,
                               }}
                               className="inline-block mx-[2px]"
+                            >
+                              {letter}
+                            </motion.span>
+                          ))}
+                        </span>
+                      </Link>
+                    </motion.li>
+                  )
+                )}
+              </motion.ul>
+
+              <motion.ul className="flex flex-col items-center gap-6 mt-12 md:hidden">
+                {[["Home", "/"], ["About", "/about"], ["Contact", "/contact"], ["Login", "/login"], ["Sign Up", "/signup"]].map(
+                  ([name, path], index) => (
+                    <motion.li
+                      key={name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20, transition: { duration: 0.4 } }}
+                      transition={{
+                        delay: index * 0.15,
+                        type: "spring",
+                        stiffness: 100,
+                        duration: 0.4,
+                      }}
+                      className="text-9xl max-md:text-7xl font-bold uppercase tracking-wide menu-items"
+                    >
+                      <Link href={path} onClick={() => setMenuOpen(false)}>
+                        <span className="cursor-pointer inline-block">
+                          {name.split("").map((letter, i) => (
+                            <motion.span
+                              key={i}
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{
+                                delay: i * 0.1,
+                                type: "spring",
+                                stiffness: 100,
+                                duration: 0.5,
+                              }}
+                              className="inline-block"
                             >
                               {letter}
                             </motion.span>
