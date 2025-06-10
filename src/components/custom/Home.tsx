@@ -12,6 +12,7 @@ const notable = Notable({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
+  style: ['normal']
 });
 
 const tinos = Tinos({
@@ -74,7 +75,7 @@ const Home = () => {
               stiffness: 120,
               damping: 20
             }}
-            className={` text-9xl max-md:text-7xl ${notable.className} text-center tracking-wider pt-6 max-lg:pt-2 max-md:pt-12 text-wrap`}
+            className={` lg:text-[150px] lg:leading-32 max-lg:text-8xl font-bold max-md:text-7xl ${notable.className} text-center tracking-wide pt-6 max-lg:pt-2 max-md:pt-12 text-wrap`}
           >
             Code More, Drift Less.
           </motion.h1>
