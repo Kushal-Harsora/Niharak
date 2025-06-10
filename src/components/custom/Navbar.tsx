@@ -9,9 +9,28 @@ import { AnimatePresence, motion } from "motion/react"
 // Component imports
 
 // Style imports
-import '@/styles/Navbar.css';
+import { Clicker_Script, Tinos, Notable } from 'next/font/google';
 import { AlignJustify } from 'lucide-react';
 import FlipTexts from './FlipTexts';
+
+const clickerScript = Clicker_Script({
+  weight: '400', // only 400 is available
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const tinos = Tinos({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const notable = Notable({
+  weight: '400', // only 400 available
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 const Navbar = () => {
 
@@ -43,7 +62,7 @@ const Navbar = () => {
                 stiffness: 150,
                 duration: 0.4
               }}
-              className="text-base bg-black hover:bg-gray-200 text-white hover:text-black nav-items cursor-pointer px-6 py-2.5 rounded-full"
+              className={`text-base bg-black hover:bg-gray-200 text-white hover:text-black ${tinos.className} cursor-pointer px-6 py-2.5 rounded-full`}
               onClick={() => setMenuOpen(!menuOpen)}
             >
               Menu
@@ -60,7 +79,7 @@ const Navbar = () => {
                 stiffness: 150,
                 duration: 0.4
               }}
-              className="text-base bg-black hover:bg-gray-200 text-white hover:text-black nav-items cursor-pointer py-1 px-1 rounded-full"
+              className={`text-base bg-black hover:bg-gray-200 text-white hover:text-black ${tinos.className} cursor-pointer py-1 px-1 rounded-full`}
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <AlignJustify />
@@ -69,7 +88,7 @@ const Navbar = () => {
 
 
           <li className="flex md:flex-1 justify-center">
-            <Link href="/" className="text-4xl font-normal heading">
+            <Link href="/" className={`text-4xl font-normal ${clickerScript.className}`}>
               {title.split("").map((letter, index) => (
                 <motion.span
                   key={index}
@@ -102,7 +121,7 @@ const Navbar = () => {
                     stiffness: 150,
                     duration: 0.4
                   }}
-                  className="z-10 bg-black hover:bg-gray-200 text-white hover:text-black  pl-8 pr-12 py-2.5 rounded-full font-medium text-base relative cursor-pointer nav-items"
+                  className={`z-10 bg-black hover:bg-gray-200 text-white hover:text-black  pl-8 pr-12 py-2.5 rounded-full font-medium text-base relative cursor-pointer ${tinos.className}`}
                 >
                   <span className="inline-block">Log</span> <span className="inline-block">in</span>
                 </motion.button>
@@ -118,7 +137,7 @@ const Navbar = () => {
                     stiffness: 120,
                     duration: 0.4
                   }}
-                  className="z-20 w-[110%] bg-gray-200 hover:bg-black text-black hover:text-white px-6 py-2.5 rounded-full font-medium text-base absolute left-0 translate-x-[60%] cursor-pointer nav-items"
+                  className={`z-20 w-[110%] bg-gray-200 hover:bg-black text-black hover:text-white px-6 py-2.5 rounded-full font-medium text-base absolute left-0 translate-x-[60%] cursor-pointer ${tinos.className}`}
                 >
                   <span className="inline-block">Sign</span> <span className="inline-block">up</span>
                 </motion.button>
@@ -134,7 +153,7 @@ const Navbar = () => {
               key="menu"
               initial={{ y: -20 }}
               animate={{ y: 0 }}
-              exit={{ y: -20, transition: { visualDuration: 0.05, ease: "easeOut", } }}
+              exit={{ y: -20, transition: { visualDuration: 0.05, ease: "easeOut" } }}
               transition={{
                 duration: 0.4,
                 ease: "easeIn",
@@ -145,10 +164,10 @@ const Navbar = () => {
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="flex justify-end p-6"
+                className={` flex justify-end p-6 ${notable.className}`}
               >
                 <motion.button
-                  className="text-base font-medium px-8 py-2 cursor-pointer"
+                  className=" text-base max-md:text-xs font-medium px-8 max-md:px-4 pt-2 max-md:pt-1.5 pb-3 max-md:pb-2.5 cursor-pointer bg-black hover:underline hover:underline-offset-2 text-white rounded-full"
                   onClick={() => setMenuOpen(false)}
                 >
                   Close
@@ -159,7 +178,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut", type: "spring", stiffness: 120 }}
-                className=' pl-12  menu-items max-md:hidden flex flex-col justify-center items-center'
+                className={` pl-12 ${notable.className} max-md:hidden flex flex-col justify-center items-center`}
               >
                 {desktopNavItems.map(([name, path], index) => (
                   <FlipTexts key={index} href={path} text={name} />
@@ -170,7 +189,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut", type: "spring", stiffness: 120 }}
-                className=' pl-12 max-md:pl-0 menu-items md:hidden flex flex-col justify-center items-center gap-4'
+                className={` pl-12 max-md:pl-0 ${notable.className} md:hidden flex flex-col justify-center items-center gap-4`}
               >
                 {mobileNavItems.map(([name, path], index) => (
                   <FlipTexts key={index} href={path} text={name} />

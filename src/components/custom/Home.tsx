@@ -5,8 +5,21 @@ import React from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useRouter } from 'next/navigation';
 
-// Style imports
-import '@/styles/Home.css'
+// Fonts imports
+import { Notable, Tinos } from 'next/font/google';
+
+const notable = Notable({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const tinos = Tinos({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 const Home = () => {
 
@@ -43,7 +56,7 @@ const Home = () => {
         }
       });
     });
-  
+
   }, [buttonControls, buttonTextControls])
 
   return (
@@ -61,7 +74,7 @@ const Home = () => {
               stiffness: 120,
               damping: 20
             }}
-            className=' text-9xl max-md:text-7xl home-header text-center tracking-wider pt-6 max-lg:pt-2 max-md:pt-12 text-wrap'
+            className={` text-9xl max-md:text-7xl ${notable.className} text-center tracking-wider pt-6 max-lg:pt-2 max-md:pt-12 text-wrap`}
           >
             Code More, Drift Less.
           </motion.h1>
@@ -78,7 +91,7 @@ const Home = () => {
                 stiffness: 120,
                 damping: 20
               }}
-              className='text-xl max-lg:text-base max-md:text-sm font-medium text-center home-items'
+              className={`text-xl max-lg:text-base max-md:text-sm font-medium text-center ${tinos.className}`}
             >
               Track your coding time effortlessly.
               <br />
@@ -88,7 +101,7 @@ const Home = () => {
             <motion.button
               initial={{ opacity: 0, width: 0, height: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 0, paddingBottom: 0 }}
               animate={buttonControls}
-              className='  w-fit px-6 py-2.5 bg-gray-200 hover:bg-black text-black hover:text-white cursor-pointer rounded-full text-wrap text-center home-items'
+              className={` w-fit px-6 py-2.5 bg-gray-200 hover:bg-black text-black hover:text-white cursor-pointer rounded-full text-wrap text-center ${tinos.className}`}
               onClick={() => router.push('/login')}
             >
               <motion.span
