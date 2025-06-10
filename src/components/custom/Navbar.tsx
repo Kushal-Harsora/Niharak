@@ -50,8 +50,8 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <nav className=' h-[100px] w-screen'>
-        <ul className="h-[80px] w-screen flex flex-row max-md:flex-row-reverse items-center justify-between px-12 max-md:px-6">
+      <nav className=' h-[75px] w-screen relative top-0 left-0'>
+        <ul className="h-full w-screen flex flex-row max-md:flex-row-reverse items-center justify-between px-12 max-md:px-6">
           <li className="flex-1 max-md:hidden">
             <motion.button
               initial={{ opacity: 0, x: -20 }}
@@ -158,7 +158,7 @@ const Navbar = () => {
                 duration: 0.4,
                 ease: "easeIn",
               }}
-              className="fixed inset-0 bg-yellow-200 text-black z-30 overflow-hidden"
+              className="fixed inset-0 bg-yellow-200 text-black z-[60] overflow-hidden"
             >
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
