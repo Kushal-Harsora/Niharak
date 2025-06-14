@@ -45,6 +45,43 @@ const Home = () => {
   const springY = useSpring(y, { stiffness: 500, damping: 20 });
 
   React.useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (container.current && cursor.current) {
+        const rect = container.current.getBoundingClientRect();
+
+        const fullyVisible =
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
+        if (!fullyVisible) {
+          cursor.current.classList.add("hidden");
+          return;
+        }
+
+        const isOutside =
+          event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom;
+
+        if (isOutside) {
+          cursor.current.classList.add("hidden");
+        } else {
+          cursor.current.classList.remove("hidden");
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  React.useEffect(() => {
     buttonControls.start({
       opacity: 1,
       width: 150,
@@ -180,10 +217,10 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <section 
+      <section
         ref={container}
         className=' w-screen flex flex-col justify-center items-center'
-        style={{ height: 'calc(100vh - 75px)'}}
+        style={{ height: 'calc(100vh - 75px)' }}
       >
 
         <div ref={cursor} className=' w-10 h-10 absolute top-0 left-0 rounded-full pointer-events-none z-50 max-lg:hidden'></div>

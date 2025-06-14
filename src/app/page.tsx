@@ -1,8 +1,14 @@
-import Home from '@/components/custom/Home'
-import Navbar from '@/components/custom/Navbar'
+'use client';
+
+// System imports
 import React from 'react'
 
-const page = () => {
+// Component imports
+import Home from '@/components/custom/Home'
+import Navbar from '@/components/custom/Navbar'
+
+
+const Page = () => {
   return (
     <React.Fragment>
       <main className=' h-fit w-screen flex flex-col'>
@@ -13,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
